@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using GCW.Models;
 
 namespace GCW.Areas.Identity.Data;
 
@@ -21,6 +22,26 @@ public class ApplicationDBContext : IdentityDbContext<ApplicationUser>
         // Add your customizations after calling base.OnModelCreating(builder);
         builder.ApplyConfiguration(new ApplicationUserEntityConfiguration());
     }
+
+    public DbSet<GCW.Models.Actor> Actor { get; set; }
+
+    public DbSet<GCW.Models.DVDCategory> DVDCategory { get; set; }
+
+    public DbSet<GCW.Models.Studio> Studio { get; set; }
+
+    public DbSet<GCW.Models.Producer> Producer { get; set; }
+
+    public DbSet<GCW.Models.LoanType> LoanType { get; set; }
+
+    public DbSet<GCW.Models.MembershipCategory> MembershipCategory { get; set; }
+
+    public DbSet<GCW.Models.Member> Member { get; set; }
+
+    public DbSet<GCW.Models.DVDTitle> DVDTitle { get; set; }
+
+    public DbSet<GCW.Models.DVDCopy> DVDCopy { get; set; }
+
+    public DbSet<GCW.Models.Loan> Loan { get; set; }
 }
 
 public class ApplicationUserEntityConfiguration : IEntityTypeConfiguration<ApplicationUser>
