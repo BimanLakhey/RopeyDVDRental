@@ -1,0 +1,38 @@
+﻿@{
+    ViewBag.Title = "test Page";
+}
+<h2>@ViewBag.Message</h2>
+
+<p><b>Teacher List</b></p>
+
+<table>
+    <tr>
+        <th>Id</th>
+        <th>Address</th>
+        <th>DOB</th>
+    </tr>
+    @foreach (Member member in ViewBag.Members)
+    {
+        <tr>
+            <td>@member.MemberNumber</td>
+            <td>@member.MemberAddress</td>
+            <td>@member.MemberDateOfBirth</td>
+        </tr>
+    }
+</table>
+
+<p><b>Student List</b></p>
+
+<table>
+    <tr>
+        <th>Copy number</th>
+        <th>Date purchased</th>
+    </tr>
+    @foreach (DVDCopy dvdCopy in ViewBag.DVDCopies)
+    {
+        <tr>
+            <td>@dvdCopy.CopyNumber</td>
+            <td>@dvdCopy.DatePurchased</td>
+        </tr>
+    }
+</table>
