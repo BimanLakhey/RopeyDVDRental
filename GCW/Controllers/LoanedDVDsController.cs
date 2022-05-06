@@ -35,6 +35,7 @@ namespace GCW.Controllers
                                      from dC in table2.ToList()
                                      join dT in dvdTitles on dC.DVDNumber equals dT.DVDNumber into table3
                                      from dT in table3.ToList()
+                                     where l.DateOut >= DateTime.Now.AddDays(-31)
                                      select new ViewModel
                                      {
                                          member = m,
