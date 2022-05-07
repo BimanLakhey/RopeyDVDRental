@@ -279,6 +279,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW5hY3RpdmVNZW1iZXJzXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/GCW/GCW/Views/LastLoanedDVDCopies/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTGFzdExvYW5lZERWRENvcGllc1xJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/GCW/GCW/Views/LoanedDVDs/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG9hbmVkRFZEc1xJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
