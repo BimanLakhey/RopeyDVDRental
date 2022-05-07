@@ -6,6 +6,7 @@ using GCW.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 
 namespace GCW.Controllers
 {
@@ -19,7 +20,7 @@ namespace GCW.Controllers
         {
             _context = context;
         }
-        public ActionResult Index()
+        public async Task<IActionResult> Index(string lastName)
         {
             using (_context)
             {
@@ -28,36 +29,26 @@ namespace GCW.Controllers
                 List<Loan> loans = _context.Loan.ToList();
                 List<DVDTitle> dvdTitles = _context.DVDTitle.ToList();
 
-                var memberNumbers = from m in members select m.MemberNumber;
-                ViewBag.MemberNumber = memberNumbers.ToList().Select(x =>
-                                  new SelectListItem()
-                                  {
-                                      Text = x.ToString()
-                                  });
 
-                var memberLastNames = from m in members select m.MemberLastName;
-                ViewBag.MemberLastName = memberLastNames.ToList().Select(x =>
-                                  new SelectListItem()
-                                  {
-                                      Text = x.ToString()
-                                  });
+                    var memberRecord = (from m in members
+                                       join l in loans on m.MemberNumber equals l.MemberNumber into table1
+                                       from l in table1.ToList()
+                                       join dC in dvdCopies on l.CopyNumber equals dC.CopyNumber into table2
+                                       from dC in table2.ToList()
+                                       join dT in dvdTitles on dC.DVDNumber equals dT.DVDNumber into table3
+                                       from dT in table3.ToList()
+                                       where (l.DateOut >= DateTime.Now.AddDays(-31)) && m.MemberLastName == lastName
+                                       select new ViewModel
+                                       {
+                                           member = m,
+                                           loan = l,
+                                           dvdCopy = dC,
+                                           dvdTitle = dT
+                                       }).ToList();
 
-                var memberRecord = from m in members
-                                   join l in loans on m.MemberNumber equals l.MemberNumber into table1
-                                   from l in table1.ToList()
-                                   join dC in dvdCopies on l.CopyNumber equals dC.CopyNumber into table2
-                                   from dC in table2.ToList()
-                                   join dT in dvdTitles on dC.DVDNumber equals dT.DVDNumber into table3
-                                   from dT in table3.ToList()
-                                   where (l.DateOut >= DateTime.Now.AddDays(-31)) && (m.MemberNumber == 2)
-                                   select new ViewModel
-                                   {
-                                       member = m,
-                                       loan = l,
-                                       dvdCopy = dC,
-                                       dvdTitle = dT
-                                   };
-                return View(memberRecord);
+                    return View(memberRecord);
+               
+                
             }
         }
 
