@@ -175,6 +175,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/GCW/GCW/Views/ActorDVDs/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWN0b3JEVkRzXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/GCW/GCW/Views/Actors/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWN0b3JzXENyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -193,6 +197,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [D:/GCW/GCW/Views/Actors/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWN0b3JzXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/GCW/GCW/Views/DVDCast/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRFZEQ2FzdFxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/GCW/GCW/Views/DVDCategories/Create.cshtml]
@@ -261,6 +269,14 @@ build_metadata.AdditionalFiles.CssScope =
 
 [D:/GCW/GCW/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/GCW/GCW/Views/InactiveDVDCopies/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW5hY3RpdmVEVkRDb3BpZXNcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/GCW/GCW/Views/InactiveMembers/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW5hY3RpdmVNZW1iZXJzXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/GCW/GCW/Views/LoanedDVDs/Index.cshtml]
@@ -365,6 +381,14 @@ build_metadata.AdditionalFiles.CssScope =
 
 [D:/GCW/GCW/Views/Producers/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjZXJzXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/GCW/GCW/Views/RemoveDVDCopies/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVtb3ZlRFZEQ29waWVzXERlbGV0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/GCW/GCW/Views/RemoveDVDCopies/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVtb3ZlRFZEQ29waWVzXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/GCW/GCW/Views/Shared/Error.cshtml]

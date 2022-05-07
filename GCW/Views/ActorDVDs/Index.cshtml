@@ -1,0 +1,51 @@
+﻿@model IEnumerable<GCW.Models.DVDTitle>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<br />
+<form asp-controller="ActorDVDs" asp-action="Index" role="form"> 
+     <div style="display: flex; justify-content: space-between; width: 300px;">
+        <input style="width: 175px;" type="text" class="form-control" placeholder="Actor last name" name="lastName"/>
+        <input style="width: 100px;" type="submit" class="btn btn-primary" value="Search" name="btnSubmit"/>
+    </div>
+</form>
+ <br />
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                DVD Title
+            </th>
+            <th>
+                Date released
+            </th>
+            <th>
+                Standard charge
+            </th>
+            <th>
+                Penalty charge
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateReleased)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StandardCharge)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PenaltyCharge)
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

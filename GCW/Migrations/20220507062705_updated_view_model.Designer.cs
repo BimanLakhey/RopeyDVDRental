@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GCW.Migrations
 {
     [DbContext(typeof(ApplicationDBContext))]
-    [Migration("20220504124910_updatedModels2")]
-    partial class updatedModels2
+    [Migration("20220507062705_updated_view_model")]
+    partial class updated_view_model
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -118,6 +118,21 @@ namespace GCW.Migrations
                     b.ToTable("Actor");
                 });
 
+            modelBuilder.Entity("GCW.Models.CastMember", b =>
+                {
+                    b.Property<int>("ActorNumber")
+                        .HasColumnType("int");
+
+                    b.Property<int>("DVDNumber")
+                        .HasColumnType("int");
+
+                    b.HasIndex("ActorNumber");
+
+                    b.HasIndex("DVDNumber");
+
+                    b.ToTable("CastMember");
+                });
+
             modelBuilder.Entity("GCW.Models.DVDCategory", b =>
                 {
                     b.Property<int>("CategoryNumber")
@@ -183,6 +198,10 @@ namespace GCW.Migrations
 
                     b.Property<int>("StudioNumber")
                         .HasColumnType("int");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("DVDNumber");
 
@@ -467,6 +486,25 @@ namespace GCW.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens", (string)null);
+                });
+
+            modelBuilder.Entity("GCW.Models.CastMember", b =>
+                {
+                    b.HasOne("GCW.Models.Actor", "Actor")
+                        .WithMany()
+                        .HasForeignKey("ActorNumber")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("GCW.Models.DVDTitle", "DVDTitle")
+                        .WithMany()
+                        .HasForeignKey("DVDNumber")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Actor");
+
+                    b.Navigation("DVDTitle");
                 });
 
             modelBuilder.Entity("GCW.Models.DVDCopy", b =>

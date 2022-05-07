@@ -4,7 +4,7 @@
 
 namespace GCW.Migrations
 {
-    public partial class viewModelAdded : Migration
+    public partial class updated_view_model : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

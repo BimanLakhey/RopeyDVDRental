@@ -9,7 +9,7 @@ namespace GCW.Models
         public int LoanNumber { get; set; }
         public DateTime DateOut { get; set; }
         public DateTime DateDue { get; set; }
-        public DateTime DateReturned { get; set; }
+        public DateTime? DateReturned { get; set; }
 
         [ForeignKey("LoanType")]
         public int LoanTypeNumber { get; set; }

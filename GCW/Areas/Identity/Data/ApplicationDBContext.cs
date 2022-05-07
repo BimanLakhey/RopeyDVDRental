@@ -23,6 +23,8 @@ public class ApplicationDBContext : IdentityDbContext<ApplicationUser>
         builder.ApplyConfiguration(new ApplicationUserEntityConfiguration());
     }
 
+    public DbSet<GCW.Models.CastMember> CastMember { get; set; }
+
     public DbSet<GCW.Models.Actor> Actor { get; set; }
 
     public DbSet<GCW.Models.DVDCategory> DVDCategory { get; set; }

@@ -7,6 +7,7 @@ namespace GCW.Models
     {
         [Key]
         public int DVDNumber { get; set; }
+        public string Title { get; set; }
         public DateTime DateReleased { get; set; }
         public int StandardCharge { get; set; }
         public int PenaltyCharge { get; set; }

@@ -4,7 +4,7 @@
 
 namespace GCW.Migrations
 {
-    public partial class addedModels : Migration
+    public partial class key_lesss : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

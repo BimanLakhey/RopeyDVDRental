@@ -1,16 +1,20 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace GCW.Models
 {
+    [Keyless]
     public class CastMember
     {
         [ForeignKey("DVDTitle")]
         public int DVDNumber { get; set; }
-        public DVDTitle? DVDTitle { get; set; }
 
         [ForeignKey("Actor")]
         public int ActorNumber { get; set; }
-        public Actor? Actor { get; set; }
+
+        public virtual DVDTitle DVDTitle { get; set; }
+        public virtual Actor Actor { get; set; }
     }
 }
 

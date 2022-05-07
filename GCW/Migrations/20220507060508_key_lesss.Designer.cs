@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GCW.Migrations
 {
     [DbContext(typeof(ApplicationDBContext))]
-    [Migration("20220505105303_viewModelAdded")]
-    partial class viewModelAdded
+    [Migration("20220507060508_key_lesss")]
+    partial class key_lesss
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -183,6 +183,10 @@ namespace GCW.Migrations
 
                     b.Property<int>("StudioNumber")
                         .HasColumnType("int");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("DVDNumber");
 

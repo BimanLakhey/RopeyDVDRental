@@ -1,0 +1,57 @@
+﻿@model IEnumerable<GCW.Models.RemoveDVDCopiesViewModel>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>  
+  
+<html>  
+<head>  
+    <meta name="viewport" content="width=device-width" />  
+    <title>Index</title>  
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />  
+    <script type="text/javascript" src="@Url.Action("~/scripts/jquery-3.3.1.min.js")"></script>  
+    <script type="text/javascript" src="@Url.Action("~/scripts/bootstrap.min.js")"></script>  
+</head>  
+<body>  
+    <div class="container-fluid py-4">  
+        <h4 class="text-center text-uppercase">Old DVD Copies</h4>   
+        <br />
+        <table class="table table-striped table-bordered">  
+            <thead class="bg-dark text-white">  
+                <tr>
+                    <th>DVD title</th>  
+                    <th>DVD copy number</th>
+                    <th>Date purchased</th>
+                    <th>Date returned</th>
+                    <th></th>
+                </tr>  
+            </thead>  
+            <tbody>  
+                @foreach (var item in Model)  
+                {  
+                    <tr>  
+                        <td>@item.dvdTitle.Title</td>  
+                        <td>@item.dvdCopy.CopyNumber</td>  
+                        <td>@item.dvdCopy.DatePurchased</td>  
+                        <td>@item.loan.DateReturned</td> 
+                        <td>
+                            <a asp-action="Delete" asp-route-id="@item.dvdCopy.CopyNumber">Delete</a>
+                        </td>
+                        
+                    </tr>  
+                }  
+                
+            </tbody>  
+        </table>  
+    </div>  
+</body>  
+<script type="text/javascript">  
+    function SelectedIndexChanged() {  
+        //Form post  
+   }  
+</script>  
+</html>  
+
+

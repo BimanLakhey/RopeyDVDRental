@@ -18,44 +18,21 @@
     <div class="container-fluid py-4">  
         <h4 class="text-center text-uppercase">Loaned DVDs</h4>   
         <br />
-        <table>
-            <tr>
-                <td> 
-                    @Html.DropDownList("MemberLastName", (IEnumerable
-                    <SelectListItem>)ViewBag.MemberLastName, new {onchange = "SelectedIndexChanged()"}) 
-                </td>
-                @using (Html.BeginForm())
-                {
-                    <p>
-                        Find by name: @Html.TextBox("SearchString")
-                        <input type="submit" value="Search"></p>
-                }
-            </tr>
-        </table>
-        <br />
         <table class="table table-striped table-bordered">  
             <thead class="bg-dark text-white">  
                 <tr>
-                    <th>First name</th>  
-                    <th>Last name</th>  
                     <th>DVD number</th>  
-                    <th>Copy number</th>  
-                    <th>Date out</th>  
-                    <th>Date due</th>  
-                    <th>Date returned</th>
+                    <th>DVD title</th>
+                    <th>Last loaned</th>  
                 </tr>  
             </thead>  
             <tbody>  
                 @foreach (var item in Model)  
                 {  
                     <tr>  
-                        <td>@item.member.MemberFirstName</td>  
-                        <td>@item.member.MemberLastName</td>  
                         <td>@item.dvdTitle.DVDNumber</td>  
-                        <td>@item.dvdCopy.CopyNumber</td>  
+                        <td>@item.dvdTitle.Title</td>  
                         <td>@item.loan.DateOut</td>  
-                        <td>@item.loan.DateDue</td>  
-                        <td>@item.loan.DateReturned</td>  
                     </tr>  
                 }  
             </tbody>  
@@ -68,3 +45,5 @@
    }  
 </script>  
 </html>  
+
+
