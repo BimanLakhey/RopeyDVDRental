@@ -4,57 +4,92 @@
     ViewData["Title"] = "Edit";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<html>
+    <head>
+        <title>Edit loan</title>
+    </head>
+    <body>
+        <h1 id="test">Edit</h1>
+        <h4>Loan</h4>
+        <hr />
+        <div class="row">
+            <div class="col-md-4">
+                <form asp-action="Edit">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="hidden" asp-for="LoanNumber"/>
+                    <div class="form-group">
+                        <label asp-for="DateOut" class="control-label"></label>
+                        <input asp-for="DateOut" class="form-control" />
+                        <span asp-validation-for="DateOut" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="DateDue" class="control-label"></label>
+                        <input asp-for="DateDue" class="form-control" id="dateDueInput"/>
+                        <span asp-validation-for="DateDue" class="text-danger"></span>
+                    </div>  
+                    <div class="form-group">
+                        <label asp-for="DateReturned" class="control-label"></label>    
+                        <input asp-for="DateReturned" class="form-control" id="dateReturnedInput"/>
+                        <span asp-validation-for="DateReturned" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="LoanTypeNumber" class="control-label"></label>
+                        <select asp-for="LoanTypeNumber" class="form-control" asp-items="ViewBag.LoanTypeNumber"></select>
+                        <span asp-validation-for="LoanTypeNumber" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="CopyNumber" class="control-label"></label>
+                        <select asp-for="CopyNumber" class="form-control" asp-items="ViewBag.CopyNumber"></select>
+                        <span asp-validation-for="CopyNumber" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="MemberNumber" class="control-label"></label>
+                        <select asp-for="MemberNumber" class="form-control" asp-items="ViewBag.MemberNumber"></select>
+                        <span asp-validation-for="MemberNumber" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <input id="saveBtn" type="submit" value="Save" class="btn btn-primary" />
+                    </div>
+                </form>
+                <br />
+                <h3 id="penaltyCharge"></h3>
+            </div>
+        </div>
 
-<h1>Edit</h1>
+        <div>
+            <a asp-action="Index">Back to List</a>
+        </div>
 
-<h4>Loan</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="LoanNumber" />
-            <div class="form-group">
-                <label asp-for="DateOut" class="control-label"></label>
-                <input asp-for="DateOut" class="form-control" />
-                <span asp-validation-for="DateOut" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="DateDue" class="control-label"></label>
-                <input asp-for="DateDue" class="form-control" />
-                <span asp-validation-for="DateDue" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="DateReturned" class="control-label"></label>
-                <input asp-for="DateReturned" class="form-control" />
-                <span asp-validation-for="DateReturned" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="LoanTypeNumber" class="control-label"></label>
-                <select asp-for="LoanTypeNumber" class="form-control" asp-items="ViewBag.LoanTypeNumber"></select>
-                <span asp-validation-for="LoanTypeNumber" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="CopyNumber" class="control-label"></label>
-                <select asp-for="CopyNumber" class="form-control" asp-items="ViewBag.CopyNumber"></select>
-                <span asp-validation-for="CopyNumber" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="MemberNumber" class="control-label"></label>
-                <select asp-for="MemberNumber" class="form-control" asp-items="ViewBag.MemberNumber"></select>
-                <span asp-validation-for="MemberNumber" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
-</div>
+        @section Scripts {
+            @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+        }
+        <script type="text/javascript">
+            //document.getElementById("btnUpdateReturnDate").onclick = function() 
+            //{
+            //     if(Date.parse(document.getElementById("dateReturnedInput").value) >= Date.parse(document.getElementById("dateDueInput").value))
+            //     {
+            //         document.getElementById("test").innerHTML = "over due";
+            //     }
+            //     else
+            //     {
+            //         document.getElementById("test").innerHTML = "returned on time";
+            //     }
+            //};
+            document.getElementById("dateReturnedInput").onchange = function() 
+            {
+                 if(Date.parse(document.getElementById("dateReturnedInput").value) >= Date.parse(document.getElementById("dateDueInput").value))
+                 {
+                     var overDuedTime = Date.parse(document.getElementById("dateReturnedInput").value) - Date.parse(document.getElementById("dateDueInput").value);
+                     var overDuedDays = overDuedTime / (1000 * 3600 * 24);
+                     document.getElementById("penaltyCharge").innerHTML = "Total over dued amount to be paid: Rs. " + (overDuedDays * 2000).toFixed(2);
+                 }
+                 else
+                 {
+                     document.getElementById("penaltyCharge").innerHTML = "";
+                 }
+            };
+        </script>
+    </body>
+</html>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
 
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
