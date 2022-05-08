@@ -13,37 +13,37 @@
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.DateOut)
+            Date out
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.DateOut)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.DateDue)
+            Date due
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.DateDue)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.DateReturned)
+            Date returned
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.DateReturned)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.LoanType)
+            Loan type
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.LoanType.LoanTypeNumber)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.DVDCopy)
+            DVD copy
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.DVDCopy.CopyNumber)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Member)
+            Member number
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Member.MemberNumber)
@@ -53,6 +53,6 @@
     <form asp-action="Delete">
         <input type="hidden" asp-for="LoanNumber" />
         <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-action="Index">Back to List</a>
+        <a asp-action="Index"><input type="button" value="Back" class="btn bg-primary text-white"></a>
     </form>
 </div>

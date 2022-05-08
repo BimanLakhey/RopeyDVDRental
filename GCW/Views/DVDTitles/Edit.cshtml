@@ -7,7 +7,7 @@
 
 <h1>Edit</h1>
 
-<h4>DVDTitle</h4>
+<h4>DVD Title</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -15,40 +15,47 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="DVDNumber" />
             <div class="form-group">
-                <label asp-for="Title" class="control-label"></label>
+                <label asp-for="Title" class="control-label">DVD title</label>
                 <input asp-for="Title" class="form-control" />
                 <span asp-validation-for="Title" class="text-danger"></span>
             </div>
+            <br />
             <div class="form-group">
-                <label asp-for="DateReleased" class="control-label"></label>
+                <label asp-for="DateReleased" class="control-label">Date released</label>
                 <input asp-for="DateReleased" class="form-control" />
                 <span asp-validation-for="DateReleased" class="text-danger"></span>
             </div>
+            <br />
             <div class="form-group">
-                <label asp-for="StandardCharge" class="control-label"></label>
+                <label asp-for="StandardCharge" class="control-label">Standard charge</label>
                 <input asp-for="StandardCharge" class="form-control" />
                 <span asp-validation-for="StandardCharge" class="text-danger"></span>
             </div>
+            <br />
             <div class="form-group">
-                <label asp-for="PenaltyCharge" class="control-label"></label>
+                <label asp-for="PenaltyCharge" class="control-label">Penalty charge</label>
                 <input asp-for="PenaltyCharge" class="form-control" />
                 <span asp-validation-for="PenaltyCharge" class="text-danger"></span>
             </div>
+            <br />
             <div class="form-group">
-                <label asp-for="CategoryNumber" class="control-label"></label>
+                <label asp-for="CategoryNumber" class="control-label">Category number</label>
                 <select asp-for="CategoryNumber" class="form-control" asp-items="ViewBag.CategoryNumber"></select>
                 <span asp-validation-for="CategoryNumber" class="text-danger"></span>
             </div>
+            <br />
             <div class="form-group">
-                <label asp-for="StudioNumber" class="control-label"></label>
+                <label asp-for="StudioNumber" class="control-label">Studio number</label>
                 <select asp-for="StudioNumber" class="form-control" asp-items="ViewBag.StudioNumber"></select>
                 <span asp-validation-for="StudioNumber" class="text-danger"></span>
             </div>
+            <br />
             <div class="form-group">
-                <label asp-for="ProducerNumber" class="control-label"></label>
+                <label asp-for="ProducerNumber" class="control-label">Producer number</label>
                 <select asp-for="ProducerNumber" class="form-control" asp-items="ViewBag.ProducerNumber"></select>
                 <span asp-validation-for="ProducerNumber" class="text-danger"></span>
             </div>
+            <br />
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>

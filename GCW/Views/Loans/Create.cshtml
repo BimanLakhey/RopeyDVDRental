@@ -14,27 +14,50 @@
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="LoanTypeNumber" class="control-label"></label>
+                <label asp-for="LoanTypeNumber" class="control-label">Loan type number</label>
                 <select asp-for="LoanTypeNumber" class ="form-control" asp-items="ViewBag.LoanTypeNumber"></select>
             </div>
+            <br />
             <div class="form-group">
-                <label asp-for="CopyNumber" class="control-label"></label>
+                <label asp-for="CopyNumber" class="control-label">Copy number</label>
                 <select asp-for="CopyNumber" class ="form-control" asp-items="ViewBag.CopyNumber"></select>
             </div>
+            <br />
             <div class="form-group">
-                <label asp-for="MemberNumber" class="control-label"></label>
+                <label asp-for="MemberNumber" class="control-label">Member number</label>
                 <select asp-for="MemberNumber" class ="form-control" asp-items="ViewBag.MemberNumber"></select>
             </div>
+            <br />
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
         </form>
+        <br />
+        <h3 id="standardCharge">@ViewBag.StandardCharge</h3>
+        <h3 hidden id="loanDuration">@ViewBag.LoanDuration</h3>
+
+        <h3 id="finalCharge"></h3>
     </div>
 </div>
+<script type="text/javascript">
+            document.getElementById("standardCharge").onchange = function() 
+            {
+                var standardCharge = document.getElementById("standardCharge").innerHTML;
+                 
+                     document.getElementById("finalCharge").innerHTML = "Total amount to be paid: Rs. " + (document.getElementById("loanDuration").innerHTML * standardCharge).toFixed(2);
+                 }
+                 else
+                 {
+                     document.getElementById("finalCharge").innerHTML = "";
+                 }
+            };
+        </script>
 
 <div>
     <a asp-action="Index">Back to List</a>
 </div>
+
+
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

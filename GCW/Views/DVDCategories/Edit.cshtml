@@ -7,7 +7,7 @@
 
 <h1>Edit</h1>
 
-<h4>DVDCategory</h4>
+<h4>DVD Category</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -15,15 +15,17 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="CategoryNumber" />
             <div class="form-group">
-                <label asp-for="CategoryDescription" class="control-label"></label>
+                <label asp-for="CategoryDescription" class="control-label">Category description</label>
                 <input asp-for="CategoryDescription" class="form-control" />
                 <span asp-validation-for="CategoryDescription" class="text-danger"></span>
             </div>
+            <br />
             <div class="form-group">
-                <label asp-for="AgeRestriction" class="control-label"></label>
+                <label asp-for="AgeRestriction" class="control-label">Age restriction</label>
                 <input asp-for="AgeRestriction" class="form-control" />
                 <span asp-validation-for="AgeRestriction" class="text-danger"></span>
             </div>
+            <br />
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>

@@ -7,7 +7,7 @@
 
 <h1>Edit</h1>
 
-<h4>MembershipCategory</h4>
+<h4>Membership Category</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -15,15 +15,17 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="MembershipCategoryNumber" />
             <div class="form-group">
-                <label asp-for="MembershipCategoryDescription" class="control-label"></label>
+                <label asp-for="MembershipCategoryDescription" class="control-label">Membership category description</label>
                 <input asp-for="MembershipCategoryDescription" class="form-control" />
                 <span asp-validation-for="MembershipCategoryDescription" class="text-danger"></span>
             </div>
+            <br />
             <div class="form-group">
-                <label asp-for="MembershipCategoryTotalLoans" class="control-label"></label>
+                <label asp-for="MembershipCategoryTotalLoans" class="control-label">Total loans</label>
                 <input asp-for="MembershipCategoryTotalLoans" class="form-control" />
                 <span asp-validation-for="MembershipCategoryTotalLoans" class="text-danger"></span>
             </div>
+            <br />
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>

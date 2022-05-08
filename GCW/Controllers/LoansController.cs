@@ -67,6 +67,7 @@ namespace GCW.Controllers
             var dvdCopies = _context.DVDCopy;
             var members = _context.Member;
             var loanTypes = _context.LoanType;
+            var loans = _context.Loan;
 
             var loanTypeStr = HttpContext.Request.Form["LoanTypeNumber"];
             LoanType loanType = loanTypes.Where(l => l.LoanTypeNumber == int.Parse(loanTypeStr)).FirstOrDefault();
@@ -76,9 +77,25 @@ namespace GCW.Controllers
 
             int remainingLoanCount = _context.Loan.Where(l => l.MemberNumber == loan.MemberNumber && l.DateReturned == null).Count();
 
+            int standardCharge = (
+                      from dC in _context.DVDCopy
+                      join dT in _context.DVDTitle on dC.DVDNumber equals dT.DVDNumber
+                      where dC.CopyNumber == loan.CopyNumber
+                      select dT.StandardCharge).Single();
+
+            //int loanDuration = (from dC in _context.DVDCopy
+            //                   join dT in _context.DVDTitle on dC.DVDNumber equals dT.DVDNumber
+            //                   join l in loans on dC.CopyNumber equals l.CopyNumber
+            //                   join lT in loanTypes on l.LoanTypeNumber equals lT.LoanTypeNumber
+            //                   where dC.CopyNumber == loan.CopyNumber
+            //                   select lT.LoanDuration).Single();
+
             ViewData["CopyNumber"] = new SelectList(_context.DVDCopy, "CopyNumber", "CopyNumber", loan.CopyNumber);
             ViewData["LoanTypeNumber"] = new SelectList(_context.LoanType, "LoanTypeNumber", "LoanTypeNumber", loan.LoanType);
             ViewData["MemberNumber"] = new SelectList(_context.Member, "MemberNumber", "MemberNumber", loan.MemberNumber);
+            ViewData["StandardCharge"] = standardCharge;
+            //ViewData["LoanDuration"] = loanDuration;
+
 
             loan.DateOut = DateTime.Now;
 
@@ -86,13 +103,13 @@ namespace GCW.Controllers
 
             if (remainingLoanCount >= member.MembershipCategory.MembershipCategoryTotalLoans)
             {
-                ModelState.AddModelError(string.Empty, "Member has too many DVD unreturned!");
+                ModelState.AddModelError(string.Empty, "The member has already loaned more than their available loans");
                 return View();
             }
 
             if (DateTime.Today.Year - member.MemberDateOfBirth.Year < 18 && bool.Parse(dvdCopy.DVDTitle.DVDCategory.AgeRestriction))
             {
-                ModelState.AddModelError(string.Empty, "Member is underaged for this DVD");
+                ModelState.AddModelError(string.Empty, "The DVD is for 18+ members only");
                 return View();
             }
 
@@ -102,7 +119,8 @@ namespace GCW.Controllers
             {
                 _context.Add(loan);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                ModelState.AddModelError(string.Empty, "DVD loaned");
+                //return RedirectToAction(nameof(Index));
             }
 
             return View(loan);
@@ -121,9 +139,16 @@ namespace GCW.Controllers
             {
                 return NotFound();
             }
+            var result = _context.Loan.Where(x => x.LoanNumber == id);
+            int penaltyCharge = (from r in result 
+                                join dC in _context.DVDCopy on r.CopyNumber equals dC.CopyNumber
+                                join dT in _context.DVDTitle on dC.DVDNumber equals dT.DVDNumber
+                                select dT.PenaltyCharge).Single();
+
             ViewData["CopyNumber"] = new SelectList(_context.DVDCopy, "CopyNumber", "CopyNumber", loan.CopyNumber);
             ViewData["LoanTypeNumber"] = new SelectList(_context.LoanType, "LoanTypeNumber", "LoanTypeNumber", loan.LoanTypeNumber);
             ViewData["MemberNumber"] = new SelectList(_context.Member, "MemberNumber", "MemberNumber", loan.MemberNumber);
+            ViewData["PenaltyCharge"] = penaltyCharge;
             return View(loan);
         }
 

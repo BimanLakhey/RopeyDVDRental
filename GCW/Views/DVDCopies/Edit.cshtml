@@ -7,7 +7,7 @@
 
 <h1>Edit</h1>
 
-<h4>DVDCopy</h4>
+<h4>DVD Copy</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -15,15 +15,17 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="CopyNumber" />
             <div class="form-group">
-                <label asp-for="DVDNumber" class="control-label"></label>
+                <label asp-for="DVDNumber" class="control-label">DVD Number</label>
                 <select asp-for="DVDNumber" class="form-control" asp-items="ViewBag.DVDNumber"></select>
                 <span asp-validation-for="DVDNumber" class="text-danger"></span>
             </div>
+            <br />
             <div class="form-group">
-                <label asp-for="DatePurchased" class="control-label"></label>
+                <label asp-for="DatePurchased" class="control-label">Date Purchased</label>
                 <input asp-for="DatePurchased" class="form-control" />
                 <span asp-validation-for="DatePurchased" class="text-danger"></span>
             </div>
+            <br />
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>

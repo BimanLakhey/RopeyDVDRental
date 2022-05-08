@@ -16,8 +16,6 @@ namespace GCW.Controllers
             _context = context;
         }
 
-
-
         public async Task<IActionResult> Index(string lastName)
         {
             using (_context)
@@ -28,26 +26,26 @@ namespace GCW.Controllers
                 List<DVDTitle> dvdTitles = _context.DVDTitle.ToList();
                 List<CastMember> castMembers = _context.CastMember.ToList();
 
-                    var results = (from dt in dvdTitles
-                                   join cm in castMembers
-                                   on dt.DVDNumber equals cm.DVDNumber
-                                   join dc in dvdCopies
-                                   .Where(c => _context.Loan.Any(l => (c.CopyNumber == l.CopyNumber && l.DateReturned != null)))
-                                   on dt.DVDNumber equals dc.DVDNumber
-                                   join a in actors
-                                   on cm.ActorNumber equals a.ActorNumber
-                                   where a.ActorSurname == lastName
-                                   group new { dt, cm, dc } by new { dt.DVDNumber, dt.Title, a.ActorSurname }into grp
-                                   select new DVDCopiesOnShelves
-                                   {
-                                       DVDNumber = grp.Key.DVDNumber,
-                                       DVD_Count = grp.Count(),
-                                       ActorSurname = grp.Key.ActorSurname,
-                                       Title = grp.Key.Title,
-                                   }).ToList();
+                var results = (from dt in dvdTitles
+                               join cm in castMembers
+                               on dt.DVDNumber equals cm.DVDNumber
+                               join dc in dvdCopies
+                               .Where(c => _context.Loan.Any(l => (c.CopyNumber == l.CopyNumber && l.DateReturned != null)))
+                               on dt.DVDNumber equals dc.DVDNumber
+                               join a in actors
+                               on cm.ActorNumber equals a.ActorNumber
+                               where a.ActorSurname == lastName
+                               group new { dt, cm, dc } by new { dt.DVDNumber, dt.Title, a.ActorSurname } into grp
+                               select new DVDCopiesOnShelves
+                               {
+                                   DVDNumber = grp.Key.DVDNumber,
+                                   DVD_Count = grp.Count(),
+                                   ActorSurname = grp.Key.ActorSurname,
+                                   Title = grp.Key.Title,
+                               }).ToList();
 
-                    ViewData["results"] = results;
-                    return View();
+                ViewData["results"] = results;
+                return View();
             }
 
 
@@ -64,7 +62,7 @@ namespace GCW.Controllers
         //        List<CastMember> castMembers = _context.CastMember.ToList();
 
 
-        
+
 
         //        ViewData["results"] = results;
         //        return View(results);

@@ -15,10 +15,11 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="ProducerNumber" />
             <div class="form-group">
-                <label asp-for="ProducerName" class="control-label"></label>
+                <label asp-for="ProducerName" class="control-label">Producer name</label>
                 <input asp-for="ProducerName" class="form-control" />
                 <span asp-validation-for="ProducerName" class="text-danger"></span>
             </div>
+            <br />
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>

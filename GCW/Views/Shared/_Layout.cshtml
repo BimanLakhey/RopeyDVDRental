@@ -10,9 +10,9 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">GCW</a>
+        <nav style="background-color: darkcyan;" class="navbar navbar-nav navbar-expand-sm navbar-toggleable-sm navbar-light border-bottom box-shadow mb-3">
+            <div class="container-fluid" style="background-color: darkcyan;">
+                <a class="navbar-brand text-white" asp-area="" asp-controller="Home" asp-action="Index">Ropey DVDs</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -20,34 +20,31 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="nav-link text-white" asp-area="" asp-controller="ActorDVDs" asp-action="Index">Actor DVDs</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                            <a class="nav-link text-white" asp-area="" asp-controller="ActorDVDCopies" asp-action="Index">Available DVD Copies</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="ActorDVDs" asp-action="Index">DVDs</a>
+                            <a class="nav-link text-white" asp-area="" asp-controller="loanedDVDs" asp-action="Index">Loaned DVDs</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="" asp-action="">Actor DVD Copies</a>
+                            <a class="nav-link text-white" asp-area="" asp-controller="DVDCast" asp-action="Index">DVD Cast</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="loanedDVDs" asp-action="Index">Loaned DVDs</a>
+                            <a class="nav-link text-white" asp-area="" asp-controller="LastLoanedDVDCopies" asp-action="Index">Last loaned DVD Copies</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="DVDCast" asp-action="Index">DVD Cast</a>
+                            <a class="nav-link text-white" asp-area="" asp-controller="Loans" asp-action="Index">DVD Loans</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="LastLoanedDVDCopies" asp-action="Index">Last loaned DVD Copies</a>
+                            <a class="nav-link text-white" asp-area="" asp-controller="RemoveDVDCopies" asp-action="Index">Old DVD Copies</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="RemoveDVDCopies" asp-action="Index">Old DVD Copies</a>
+                            <a class="nav-link text-white" asp-area="" asp-controller="InactiveMembers" asp-action="Index">Inactive Members</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="InactiveMembers" asp-action="Index">Inactive Members</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="InactiveDVDCopies" asp-action="Index">Inactive DVDs</a>
+                            <a class="nav-link text-white" asp-area="" asp-controller="InactiveDVDCopies" asp-action="Index">Inactive DVDs</a>
                         </li>
                     </ul>
                 </div>

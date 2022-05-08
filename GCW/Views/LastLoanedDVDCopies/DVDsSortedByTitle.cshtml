@@ -16,7 +16,7 @@
     </head>  
     <body>  
         <div class="container-fluid py-4">  
-            <h4 class="text-center text-uppercase">Loaned DVDs</h4>   
+            <h4 class="text-center text-uppercase">Last Loaned DVDs</h4>   
             <br />
             <form asp-controller="LastLoanedDVDCopies" asp-action="Index" role="form"> 
                  <div style="display: flex; justify-content: space-between; width: 300px;">
@@ -26,12 +26,12 @@
             </form>
             <br />
             <div style="display: flex; width: 300px; justify-content: space-between;">
-                <a asp-action="CurrentlyLoanedDVDs"><input type="button" value="Sort by date out"></a>
-                <a asp-action="DVDsSortedByTitle"><input type="button" value="Sort by DVD title"></a>
+                <a asp-action="CurrentlyLoanedDVDs"><input type="button" class="btn bg-success text-white box-shadow shadow-lg" value="Sort by date out"></a>
+                <a asp-action="DVDsSortedByTitle"><input type="button" class="btn bg-success text-white box-shadow shadow-lg" value="Sort by DVD title"></a>
             </div>
             <br>
-            <table class="table table-striped table-bordered">  
-                <thead class="bg-dark text-white">  
+            <table class="table table-striped table-bordered box-shadow shadow-lg">  
+                <thead style="background-color: darkcyan;" class="text-white">  
                     <tr>
                         <th>First name</th>  
                         <th>Last name</th>  
@@ -60,7 +60,3 @@
         </div>  
     </body>  
 </html>  
-
-
-1>
-
