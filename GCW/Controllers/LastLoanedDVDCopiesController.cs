@@ -46,6 +46,68 @@ namespace GCW.Controllers
             }
         }
 
+        public async Task<IActionResult> CurrentlyLoanedDVDs()
+        {
+            using (_context)
+            {
+                List<Member> members = _context.Member.ToList();
+                List<DVDCopy> dvdCopies = _context.DVDCopy.ToList();
+                List<Loan> loans = _context.Loan.ToList();
+                List<DVDTitle> dvdTitles = _context.DVDTitle.ToList();
+
+
+                var dvdOrderedByDateOut = (from m in members
+                                     join l in loans on m.MemberNumber equals l.MemberNumber into table1
+                                     from l in table1.ToList()
+                                     join dC in dvdCopies on l.CopyNumber equals dC.CopyNumber into table2
+                                     from dC in table2.ToList()
+                                     join dT in dvdTitles on dC.DVDNumber equals dT.DVDNumber into table3
+                                     from dT in table3.ToList()
+                                     orderby l.DateOut ascending
+                                     select new ViewModel
+                                     {
+                                         member = m,
+                                         loan = l,
+                                         dvdCopy = dC,
+                                         dvdTitle = dT
+                                     }).ToList();
+
+                return View(dvdOrderedByDateOut);
+
+            }
+        }
+
+        public async Task<IActionResult> DVDsSortedByTitle()
+        {
+            using (_context)
+            {
+                List<Member> members = _context.Member.ToList();
+                List<DVDCopy> dvdCopies = _context.DVDCopy.ToList();
+                List<Loan> loans = _context.Loan.ToList();
+                List<DVDTitle> dvdTitles = _context.DVDTitle.ToList();
+
+
+                var dvdSortedByTitle = (from m in members
+                                           join l in loans on m.MemberNumber equals l.MemberNumber into table1
+                                           from l in table1.ToList()
+                                           join dC in dvdCopies on l.CopyNumber equals dC.CopyNumber into table2
+                                           from dC in table2.ToList()
+                                           join dT in dvdTitles on dC.DVDNumber equals dT.DVDNumber into table3
+                                           from dT in table3.ToList()
+                                           orderby dT.Title ascending
+                                           select new ViewModel
+                                           {
+                                               member = m,
+                                               loan = l,
+                                               dvdCopy = dC,
+                                               dvdTitle = dT
+                                           }).ToList();
+
+                return View(dvdSortedByTitle);
+
+            }
+        }
+
         // GET: LastLoanedDVDCopiesController/Details/5
         public ActionResult Details(int id)
         {

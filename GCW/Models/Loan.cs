@@ -20,8 +20,8 @@ namespace GCW.Models
         [ForeignKey("Member")]
         public int MemberNumber { get; set; }
 
-        public LoanType? LoanType { get; set; }
-        public DVDCopy? DVDCopy { get; set; }
-        public Member? Member { get; set; }
+        public virtual LoanType? LoanType { get; set; }
+        public virtual DVDCopy? DVDCopy { get; set; }
+        public virtual Member? Member { get; set; }
     }
 }

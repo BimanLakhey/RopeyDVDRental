@@ -10,7 +10,7 @@ namespace GCW.Models
         public string? MemberLastName { get; set; }
         public string? MemberFirstName { get; set; }
         public string? MemberAddress { get; set; }
-        public DateTime? MemberDateOfBirth { get; set; }
+        public DateTime MemberDateOfBirth { get; set; }
         
         [ForeignKey("MembershipCategory")]
         public int MembershipCategoryNumber { get; set; }

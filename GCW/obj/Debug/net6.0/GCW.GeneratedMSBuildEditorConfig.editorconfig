@@ -175,6 +175,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/GCW/GCW/Views/ActorDVDCopies/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWN0b3JEVkRDb3BpZXNcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/GCW/GCW/Views/ActorDVDs/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWN0b3JEVkRzXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
@@ -277,6 +281,14 @@ build_metadata.AdditionalFiles.CssScope =
 
 [D:/GCW/GCW/Views/InactiveMembers/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW5hY3RpdmVNZW1iZXJzXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/GCW/GCW/Views/LastLoanedDVDCopies/CurrentlyLoanedDVDs.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTGFzdExvYW5lZERWRENvcGllc1xDdXJyZW50bHlMb2FuZWREVkRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/GCW/GCW/Views/LastLoanedDVDCopies/DVDsSortedByTitle.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTGFzdExvYW5lZERWRENvcGllc1xEVkRzU29ydGVkQnlUaXRsZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/GCW/GCW/Views/LastLoanedDVDCopies/Index.cshtml]

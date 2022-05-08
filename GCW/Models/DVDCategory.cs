@@ -7,7 +7,7 @@ namespace GCW.Models
         [Key]
         public int CategoryNumber { get; set; }
         public string? CategoryDescription { get; set; }
-        public string? AgeRestriction { get; set; }
+        public string AgeRestriction { get; set; }
 
     }
 }

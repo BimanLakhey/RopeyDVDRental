@@ -62,17 +62,49 @@ namespace GCW.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("LoanNumber,DateOut,DateDue,DateReturned,LoanTypeNumber,CopyNumber,MemberNumber")] Loan loan)
+        public async Task<IActionResult> Create([Bind("LoanNumber,LoanTypeName,CopyNumber,MemberNumber")] Loan loan)
         {
+            var dvdCopies = _context.DVDCopy;
+            var members = _context.Member;
+            var loanTypes = _context.LoanType;
+
+            var loanTypeStr = HttpContext.Request.Form["LoanTypeNumber"];
+            LoanType loanType = loanTypes.Where(l => l.LoanTypeNumber == int.Parse(loanTypeStr)).FirstOrDefault();
+
+            Member member = members.Where(l => l.MemberNumber == loan.MemberNumber).Include(m => m.MembershipCategory).FirstOrDefault();
+            DVDCopy dvdCopy = dvdCopies.Where(l => l.CopyNumber == loan.CopyNumber).Include(c => c.DVDTitle).ThenInclude(d => d.DVDCategory).FirstOrDefault();
+
+            int remainingLoanCount = _context.Loan.Where(l => l.MemberNumber == loan.MemberNumber && l.DateReturned == null).Count();
+
+            ViewData["CopyNumber"] = new SelectList(_context.DVDCopy, "CopyNumber", "CopyNumber", loan.CopyNumber);
+            ViewData["LoanTypeNumber"] = new SelectList(_context.LoanType, "LoanTypeNumber", "LoanTypeNumber", loan.LoanType);
+            ViewData["MemberNumber"] = new SelectList(_context.Member, "MemberNumber", "MemberNumber", loan.MemberNumber);
+
+            loan.DateOut = DateTime.Now;
+
+            loan.DateDue = DateTime.Now.AddDays(loanType.LoanDuration);
+
+            if (remainingLoanCount >= member.MembershipCategory.MembershipCategoryTotalLoans)
+            {
+                ModelState.AddModelError(string.Empty, "Member has too many DVD unreturned!");
+                return View();
+            }
+
+            if (DateTime.Today.Year - member.MemberDateOfBirth.Year < 18 && bool.Parse(dvdCopy.DVDTitle.DVDCategory.AgeRestriction))
+            {
+                ModelState.AddModelError(string.Empty, "Member is underaged for this DVD");
+                return View();
+            }
+
+            loan.LoanTypeNumber = loanType.LoanTypeNumber;
+
             if (ModelState.IsValid)
             {
                 _context.Add(loan);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CopyNumber"] = new SelectList(_context.DVDCopy, "CopyNumber", "CopyNumber", loan.CopyNumber);
-            ViewData["LoanTypeNumber"] = new SelectList(_context.LoanType, "LoanTypeNumber", "LoanTypeNumber", loan.LoanTypeNumber);
-            ViewData["MemberNumber"] = new SelectList(_context.Member, "MemberNumber", "MemberNumber", loan.MemberNumber);
+
             return View(loan);
         }
 
@@ -92,6 +124,8 @@ namespace GCW.Controllers
             ViewData["CopyNumber"] = new SelectList(_context.DVDCopy, "CopyNumber", "CopyNumber", loan.CopyNumber);
             ViewData["LoanTypeNumber"] = new SelectList(_context.LoanType, "LoanTypeNumber", "LoanTypeNumber", loan.LoanTypeNumber);
             ViewData["MemberNumber"] = new SelectList(_context.Member, "MemberNumber", "MemberNumber", loan.MemberNumber);
+
+            //loanViewModel
             return View(loan);
         }
 
@@ -102,6 +136,10 @@ namespace GCW.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("LoanNumber,DateOut,DateDue,DateReturned,LoanTypeNumber,CopyNumber,MemberNumber")] Loan loan)
         {
+            //Loan loan1 = new Loan()
+            //{
+            //    CopyNumber = loanViewModel.
+            //};
             if (id != loan.LoanNumber)
             {
                 return NotFound();

@@ -1,7 +1,6 @@
 ﻿@model IEnumerable<GCW.Models.ViewModel>
-
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "CurrentlyLoanedDVDs";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -25,12 +24,12 @@
                     <input style="width: 100px;" type="submit" class="btn btn-primary" value="Search" name="btnSubmit"/>
                 </div>
             </form>
-             <br />
-             <div style="display: flex; width: 300px; justify-content: space-between;">
+            <br />
+            <div style="display: flex; width: 300px; justify-content: space-between;">
                 <a asp-action="CurrentlyLoanedDVDs"><input type="button" value="Sort by date out"></a>
                 <a asp-action="DVDsSortedByTitle"><input type="button" value="Sort by DVD title"></a>
             </div>
-             <br>
+            <br>
             <table class="table table-striped table-bordered">  
                 <thead class="bg-dark text-white">  
                     <tr>
@@ -40,7 +39,6 @@
                         <th>Copy number</th>  
                         <th>Date out</th>  
                         <th>Date due</th>  
-                        <th>Date returned</th>
                     </tr>  
                 </thead>  
                 <tbody>  
@@ -53,7 +51,7 @@
                             <td>@item.dvdCopy.CopyNumber</td>  
                             <td>@item.loan.DateOut</td>  
                             <td>@item.loan.DateDue</td>  
-                            <td>@item.loan.DateReturned</td>  
+                            <td>@item.loan.DateReturned</td>
                         </tr>  
                     }  
                 </tbody>  
