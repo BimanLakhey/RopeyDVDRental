@@ -1,4 +1,4 @@
-﻿@model IEnumerable<GCW.Models.ViewModel>
+﻿@model IEnumerable<GCW.Models.DVDTitle>
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -23,16 +23,14 @@
                 <tr>
                     <th>DVD number</th>  
                     <th>DVD title</th>
-                    <th>Last loaned</th>  
                 </tr>  
             </thead>  
             <tbody>  
                 @foreach (var item in Model)  
                 {  
                     <tr>  
-                        <td>@item.dvdTitle.DVDNumber</td>  
-                        <td>@item.dvdTitle.Title</td>  
-                        <td>@item.loan.DateOut</td>  
+                        <td>@item.DVDNumber</td>  
+                        <td>@item.Title</td>  
                     </tr>  
                 }  
             </tbody>  

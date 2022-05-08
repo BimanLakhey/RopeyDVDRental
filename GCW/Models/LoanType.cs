@@ -7,6 +7,6 @@ namespace GCW.Models
         [Key]
         public int LoanTypeNumber { get; set; }
         public string? LoanTypeName { get; set; }
-        public string? LoanDuration { get; set; }
+        public int LoanDuration { get; set; }
     }
 }

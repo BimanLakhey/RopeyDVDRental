@@ -1,0 +1,66 @@
+﻿@model IEnumerable<GCW.Models.ViewModel>
+@{
+    ViewData["Title"] = "DVDsSortedByTitle";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>  
+  
+<html>  
+    <head>  
+        <meta name="viewport" content="width=device-width" />  
+        <title>Index</title>  
+        <link href="~/Content/bootstrap.min.css" rel="stylesheet" />  
+        <script type="text/javascript" src="@Url.Action("~/scripts/jquery-3.3.1.min.js")"></script>  
+        <script type="text/javascript" src="@Url.Action("~/scripts/bootstrap.min.js")"></script>  
+    </head>  
+    <body>  
+        <div class="container-fluid py-4">  
+            <h4 class="text-center text-uppercase">Loaned DVDs</h4>   
+            <br />
+            <form asp-controller="LastLoanedDVDCopies" asp-action="Index" role="form"> 
+                 <div style="display: flex; justify-content: space-between; width: 300px;">
+                    <input style="width: 175px;" type="text" class="form-control" placeholder="DVD copy number" name="copyNumber"/>
+                    <input style="width: 100px;" type="submit" class="btn btn-primary" value="Search" name="btnSubmit"/>
+                </div>
+            </form>
+            <br />
+            <div style="display: flex; width: 300px; justify-content: space-between;">
+                <a asp-action="CurrentlyLoanedDVDs"><input type="button" value="Sort by date out"></a>
+                <a asp-action="DVDsSortedByTitle"><input type="button" value="Sort by DVD title"></a>
+            </div>
+            <br>
+            <table class="table table-striped table-bordered">  
+                <thead class="bg-dark text-white">  
+                    <tr>
+                        <th>First name</th>  
+                        <th>Last name</th>  
+                        <th>DVD title</th>  
+                        <th>Copy number</th>  
+                        <th>Date out</th>  
+                        <th>Date due</th>  
+                        <th>Date returned</th>
+                    </tr>  
+                </thead>  
+                <tbody>  
+                    @foreach (var item in Model)  
+                    {  
+                        <tr>  
+                            <td>@item.member.MemberFirstName</td>  
+                            <td>@item.member.MemberLastName</td>  
+                            <td>@item.dvdTitle.Title</td>  
+                            <td>@item.dvdCopy.CopyNumber</td>  
+                            <td>@item.loan.DateOut</td>  
+                            <td>@item.loan.DateDue</td>  
+                            <td>@item.loan.DateReturned</td>  
+                        </tr>  
+                    }  
+                </tbody>  
+            </table>  
+        </div>  
+    </body>  
+</html>  
+
+
+1>
+

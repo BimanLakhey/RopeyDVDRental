@@ -23,19 +23,17 @@ namespace GCW.Controllers
                 List<DVDCopy> dvdCopies = _context.DVDCopy.ToList();
                 List<Loan> loans = _context.Loan.ToList();
 
-                var memberRecord = (from dT in dvdTitles
-                                   join dC in dvdCopies on dT.DVDNumber equals dC.DVDNumber into table1
-                                   from dC in table1.ToList()
-                                   join l in loans on dC.CopyNumber equals l.CopyNumber into table2
-                                   from l in table2.ToList()
-                                   where l.DateOut <= DateTime.Now.AddDays(-31)
-                                   select new ViewModel
-                                   {
-                                       loan = l,
-                                       dvdCopy = dC,
-                                       dvdTitle = dT
-                                   }).DistinctBy(row => row.dvdTitle);
-                return View(memberRecord);
+                var activeDVDsList = (from dT in dvdTitles
+                                         join dC in dvdCopies on dT.DVDNumber equals dC.DVDNumber into table1
+                                         from dC in table1
+                                         join l in loans on dC.CopyNumber equals l.CopyNumber into table2
+                                         from l in table2
+                                         where l.DateOut >= DateTime.Now.AddDays(-31)
+                                         select dT);
+
+                var inactiveDVDsList = dvdTitles.Except(activeDVDsList);
+
+                return View(inactiveDVDsList);
             }
         }
 

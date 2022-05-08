@@ -41,37 +41,34 @@ namespace GCW.Controllers
             //}
             //Console.WriteLine(lastDates);
 
-            var inactiveMembersList = (from dT in dvdTitles
-                                      join dC in dvdCopies on dT.DVDNumber equals dC.DVDNumber into table1
-                                      from dC in table1
-                                      join l in loans on dC.CopyNumber equals l.CopyNumber into table2
-                                      from l in table2
-                                      join m in members on l.MemberNumber equals m.MemberNumber into table3
-                                      from m in table3
-                                      orderby l.DateOut descending
-                                      where l.DateOut <= DateTime.Now.AddDays(-31)
+            var activeMembersList = (from dT in dvdTitles
+                                     join dC in dvdCopies on dT.DVDNumber equals dC.DVDNumber into table1
+                                     from dC in table1
+                                     join l in loans on dC.CopyNumber equals l.CopyNumber into table2
+                                     from l in table2
+                                     join m in members on l.MemberNumber equals m.MemberNumber into table3
+                                     from m in table3
+                                     where l.DateOut >= DateTime.Now.AddDays(-31)
+                                     select m);
 
-                                       select new InactiveMembersViewModel
-                                      {
-                                          dvdTitle = dT,
-                                          dvdCopy = dC,
-                                          loan = l,
-                                          member = m,
-                                      }).DistinctBy(row => row.member.MemberNumber);
-            var lookupResult = inactiveMembersList.ToLookup(s => s.member.MemberNumber);
-            foreach(var group in lookupResult)
-            {
-                Console.WriteLine("Member number: {0}", group.Key);
-                foreach(InactiveMembersViewModel s in group)
-                {
-                    Console.WriteLine("Member first name: {0}", s.member.MemberFirstName);
-                    Console.WriteLine("Member first name: {0}", s.member.MemberLastName);
-                    Console.WriteLine("Member first name: {0}", s.member.MemberAddress);
-                    Console.WriteLine("Date out: {0}", s.loan.DateOut);
-                    break;
-                }
-            }
-            return View(inactiveMembersList);
+            var inactiveMembersList = members.Except(activeMembersList);
+
+            var result = (from dT in dvdTitles
+                          join dC in dvdCopies on dT.DVDNumber equals dC.DVDNumber into table1
+                          from dC in table1
+                          join l in loans on dC.CopyNumber equals l.CopyNumber into table2
+                          from l in table2
+                          join m in inactiveMembersList on l.MemberNumber equals m.MemberNumber into table3
+                          from m in table3
+                          select new InactiveMembersViewModel
+                          {
+                              dvdTitle = dT,
+                              dvdCopy = dC,
+                              loan = l,
+                              member = m,
+                          }).DistinctBy(row => row.member.MemberNumber);
+
+            return View(result);
         }
 
         // GET: InactiveMembersController/Details/5
