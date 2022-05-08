@@ -1,11 +1,13 @@
 ﻿using GCW.Areas.Identity.Data;
 using GCW.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace GCW.Controllers
 {
+    [Authorize(Roles = "manager")]
     public class ActorDVDCopiesController : Controller
     {
 
