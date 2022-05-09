@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace GCW.Controllers
 {
-    [Authorize(Roles = "manager")]
+    [Authorize(Roles = "assistant")]
     public class ActorDVDCopiesController : Controller
     {
 

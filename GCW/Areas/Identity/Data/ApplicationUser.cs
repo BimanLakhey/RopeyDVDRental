@@ -11,5 +11,8 @@ public class ApplicationUser : IdentityUser
 {
     public string FirstName { get; set; }
     public string LastName { get; set; }
+
+    [System.ComponentModel.DataAnnotations.Schema.NotMapped]
+    public virtual IEnumerable<string> Roles { get; set; }
 }
 
